@@ -2,7 +2,7 @@
 <!--
 
 ****************************************************************************
-*  Copyright (c) 2024,  Skyline Communications NV  All Rights Reserved.    *
+*  Copyright (c) 2026,  Skyline Communications NV  All Rights Reserved.    *
 ****************************************************************************
 
 By using this driver, you expressly agree with the usage terms and
@@ -45,29 +45,160 @@ Any inquiries can be addressed to:
 -->
 
 <Protocol xmlns="http://www.skyline.be/protocol">
-	<Name>Excercise QActions And Tables</Name>
-	<Description>Excercise QActions And Tables DataMiner connector</Description>
+	<Name>Excercise QActions And Tables dzenis</Name>
+	<Description>Excercise QActions And Tables DataMiner connector dzenis</Description>
 	<Version>1.0.0.1</Version>
-	<IntegrationID>DMS-DRV-</IntegrationID>
+	<IntegrationID>DMS-DRV-0</IntegrationID>
 	<Provider>Skyline Communications</Provider>
-	<Vendor></Vendor>
+	<Vendor>Skyline</Vendor>
 	<VendorOID>1.3.6.1.4.1.8813.2.</VendorOID>
-	<DeviceOID></DeviceOID>
-	<ElementType></ElementType>
+	<DeviceOID>Skyline Communications</DeviceOID>
+	<ElementType>Test</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General"/>
+	<Display defaultPage="General" pageOrder="General" wideColumnPages=""/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
-		<MinimumRequiredVersion>10.1.0.0 - 9966</MinimumRequiredVersion>
+		<MinimumRequiredVersion>10.3.0.0 - 12752</MinimumRequiredVersion>
 	</Compliancies>
 
 	<Params>
-		<Param id="2">
+		<!--<Param id="2">
 			<Name>AfterStartup</Name>
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
+		</Param>-->
+		
+		<Param id="10">
+			<Name>TransportStreams</Name>
+			<Description>Transport Streams</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="11" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="12" type="retrieved" options=""/>
+				<ColumnOption idx="2" pid="13" type="retrieved" options=""/>
+				<ColumnOption idx="3" pid="14" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="15" type="retrieved" options=""/>
+				<ColumnOption idx="5" pid="16" type="retrieved" options=""/>
+			</ArrayOptions>
+			<Information>
+				<Subtext>tableInformation</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:11|0-12|1-13|2-14|3-15|4-16|5,width:100-100-100-100-100-204,sort:STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="11">
+			<Name>TransportStreamsId</Name>
+			<Description>Id (Transport Streams)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="12">
+			<Name>TransportStreamsName</Name>
+			<Description>Name (Transport Streams)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="13">
+			<Name>TransportStreamsMulticast</Name>
+			<Description>Multicast (Transport Streams)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="14">
+			<Name>TransportStreamsSourceIp</Name>
+			<Description>Source Ip (Transport Streams)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="15">
+			<Name>TransportStreamsNetworkID</Name>
+			<Description>Network ID (Transport Streams)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="16">
+			<Name>TransportStreamsLastPollTime</Name>
+			<Description>Last Poll Time (Transport Streams)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
 		</Param>
 	</Params>
 
@@ -149,9 +280,9 @@ Any inquiries can be addressed to:
 							<MajorVersion id="0">
 								<MinorVersions>
 									<MinorVersion id="1">
-										<Date>2024-01-09</Date>
+										<Date>2026-01-20</Date>
 										<Provider>
-											<Author>XXX</Author>
+											<Author>DLI</Author>
 											<Company>Skyline Communications</Company>
 										</Provider>
 										<Changes>
