@@ -385,6 +385,8 @@ Any inquiries can be addressed to:
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
+		<QAction id="3" name="Data Poll" encoding="csharp" triggers="40;30">
+		</QAction>
 	</QActions>
 
 	<Groups>
@@ -396,7 +398,16 @@ Any inquiries can be addressed to:
 				<Action>2</Action>
 			</Content>
 		</Group>
-	</Groups>
+		
+		<Group id="3">
+			<Name>Poll Data Group</Name>
+			<Description>Poll Data Group</Description>
+			<Type>poll action</Type>
+			<Content>
+				<Action>3</Action>
+			</Content>
+			</Group>
+		</Groups>
 
 	<Triggers>
 		<Trigger id="1">
@@ -408,7 +419,16 @@ Any inquiries can be addressed to:
 				<Id>1</Id>
 			</Content>
 		</Trigger>
-	</Triggers>
+
+		<!--<Trigger id="2">
+			<Name>Poll Data Trigger</Name>
+			<On>parameter</On>
+			<Type>action</Type>
+			<Content>
+				<Id>3</Id>
+			</Content>
+			</Trigger>-->
+		</Triggers>
 
 	<Actions>
 		<Action id="1">
@@ -421,7 +441,13 @@ Any inquiries can be addressed to:
 			<On id="2">parameter</On>
 			<Type>run actions</Type>
 		</Action>
-	</Actions>
+		
+		<Action id="3">
+			<Name>Poll Data Action</Name>
+			<On id="40">parameter</On>
+			<Type>run actions</Type>
+		</Action>
+		</Actions>
 
 	<Timers>
 		<Timer id="1">
@@ -436,6 +462,7 @@ Any inquiries can be addressed to:
 			<Time initial="true" dataDisplay="30000">60000</Time>
 			<Interval>75</Interval>
 			<Content>
+				<Group>3</Group>
 			</Content>
 		</Timer>
 		<Timer id="3">
