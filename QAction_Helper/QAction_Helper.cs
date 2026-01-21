@@ -10,6 +10,11 @@ public static class Parameter
 {
 	public class Write
 	{
+		/// <summary>PID: 30 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int pollbutton_30 = 30;
+		/// <summary>PID: 30 | Type: write</summary>
+		public const int pollbutton = 30;
 	}
 	public class Transportstreams
 	{
@@ -89,9 +94,89 @@ public static class Parameter
 			public const int transportstreamslastpolltime = 5;
 		}
 	}
+	public class Services
+	{
+		/// <summary>PID: 20</summary>
+		public const int tablePid = 20;
+		/// <summary>IDX: 0</summary>
+		public const int indexColumn = 0;
+		/// <summary>PID: 21</summary>
+		public const int indexColumnPid = 21;
+		public class Pid
+		{
+			/// <summary>PID: 21 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicesid_21 = 21;
+			/// <summary>PID: 21 | Type: read</summary>
+			public const int servicesid = 21;
+			/// <summary>PID: 22 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicesname_22 = 22;
+			/// <summary>PID: 22 | Type: read</summary>
+			public const int servicesname = 22;
+			/// <summary>PID: 23 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicestype_23 = 23;
+			/// <summary>PID: 23 | Type: read</summary>
+			public const int servicestype = 23;
+			/// <summary>PID: 24 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicesprovider_24 = 24;
+			/// <summary>PID: 24 | Type: read</summary>
+			public const int servicesprovider = 24;
+			/// <summary>PID: 25 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int serviceslastpolltime_25 = 25;
+			/// <summary>PID: 25 | Type: read</summary>
+			public const int serviceslastpolltime = 25;
+			/// <summary>PID: 26 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicestransportstreamid_26 = 26;
+			/// <summary>PID: 26 | Type: read</summary>
+			public const int servicestransportstreamid = 26;
+			public class Write
+			{
+			}
+		}
+		public class Idx
+		{
+			/// <summary>IDX: 0 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicesid_21 = 0;
+			/// <summary>IDX: 0 | Type: read</summary>
+			public const int servicesid = 0;
+			/// <summary>IDX: 1 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicesname_22 = 1;
+			/// <summary>IDX: 1 | Type: read</summary>
+			public const int servicesname = 1;
+			/// <summary>IDX: 2 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicestype_23 = 2;
+			/// <summary>IDX: 2 | Type: read</summary>
+			public const int servicestype = 2;
+			/// <summary>IDX: 3 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicesprovider_24 = 3;
+			/// <summary>IDX: 3 | Type: read</summary>
+			public const int servicesprovider = 3;
+			/// <summary>IDX: 4 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int serviceslastpolltime_25 = 4;
+			/// <summary>IDX: 4 | Type: read</summary>
+			public const int serviceslastpolltime = 4;
+			/// <summary>IDX: 5 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int servicestransportstreamid_26 = 5;
+			/// <summary>IDX: 5 | Type: read</summary>
+			public const int servicestransportstreamid = 5;
+		}
+	}
 }
 public class WriteParameters
 {
+	/// <summary>PID: 30  | Type: write | DISCREETS: Poll Data = 1</summary>
+	public System.Object Pollbutton {get { return Protocol.GetParameter(30); }set { Protocol.SetParameter(30, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -102,6 +187,8 @@ public interface SLProtocolExt : SLProtocol
 {
 	/// <summary>PID: 10</summary>
 	TransportstreamsQActionTable transportstreams { get; set; }
+	/// <summary>PID: 20</summary>
+	ServicesQActionTable services { get; set; }
 	object Transportstreamsid_11 { get; set; }
 	object Transportstreamsid { get; set; }
 	object Transportstreamsname_12 { get; set; }
@@ -114,12 +201,29 @@ public interface SLProtocolExt : SLProtocol
 	object Transportstreamsnetworkid { get; set; }
 	object Transportstreamslastpolltime_16 { get; set; }
 	object Transportstreamslastpolltime { get; set; }
+	object Servicesid_21 { get; set; }
+	object Servicesid { get; set; }
+	object Servicesname_22 { get; set; }
+	object Servicesname { get; set; }
+	object Servicestype_23 { get; set; }
+	object Servicestype { get; set; }
+	object Servicesprovider_24 { get; set; }
+	object Servicesprovider { get; set; }
+	object Serviceslastpolltime_25 { get; set; }
+	object Serviceslastpolltime { get; set; }
+	object Servicestransportstreamid_26 { get; set; }
+	object Servicestransportstreamid { get; set; }
+	object Pollbutton_30 { get; set; }
+	object Pollbutton { get; set; }
+	object Polldata_dummy { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 {
 	/// <summary>PID: 10</summary>
 	public TransportstreamsQActionTable transportstreams { get; set; }
+	/// <summary>PID: 20</summary>
+	public ServicesQActionTable services { get; set; }
 	/// <summary>PID: 11  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsid_11 {get { return GetParameter(11); }set { SetParameter(11, value); }}
@@ -150,10 +254,47 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Transportstreamslastpolltime_16 {get { return GetParameter(16); }set { SetParameter(16, value); }}
 	/// <summary>PID: 16  | Type: read</summary>
 	public System.Object Transportstreamslastpolltime {get { return GetParameter(16); }set { SetParameter(16, value); }}
+	/// <summary>PID: 21  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicesid_21 {get { return GetParameter(21); }set { SetParameter(21, value); }}
+	/// <summary>PID: 21  | Type: read</summary>
+	public System.Object Servicesid {get { return GetParameter(21); }set { SetParameter(21, value); }}
+	/// <summary>PID: 22  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicesname_22 {get { return GetParameter(22); }set { SetParameter(22, value); }}
+	/// <summary>PID: 22  | Type: read</summary>
+	public System.Object Servicesname {get { return GetParameter(22); }set { SetParameter(22, value); }}
+	/// <summary>PID: 23  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicestype_23 {get { return GetParameter(23); }set { SetParameter(23, value); }}
+	/// <summary>PID: 23  | Type: read</summary>
+	public System.Object Servicestype {get { return GetParameter(23); }set { SetParameter(23, value); }}
+	/// <summary>PID: 24  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicesprovider_24 {get { return GetParameter(24); }set { SetParameter(24, value); }}
+	/// <summary>PID: 24  | Type: read</summary>
+	public System.Object Servicesprovider {get { return GetParameter(24); }set { SetParameter(24, value); }}
+	/// <summary>PID: 25  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Serviceslastpolltime_25 {get { return GetParameter(25); }set { SetParameter(25, value); }}
+	/// <summary>PID: 25  | Type: read</summary>
+	public System.Object Serviceslastpolltime {get { return GetParameter(25); }set { SetParameter(25, value); }}
+	/// <summary>PID: 26  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicestransportstreamid_26 {get { return GetParameter(26); }set { SetParameter(26, value); }}
+	/// <summary>PID: 26  | Type: read</summary>
+	public System.Object Servicestransportstreamid {get { return GetParameter(26); }set { SetParameter(26, value); }}
+	/// <summary>PID: 30  | Type: write | DISCREETS: Poll Data = 1</summary>
+	public System.Object Pollbutton_30 {get { return GetParameter(30); }set { SetParameter(30, value); }}
+	/// <summary>PID: 30  | Type: write | DISCREETS: Poll Data = 1</summary>
+	public System.Object Pollbutton {get { return Write.Pollbutton; }set { Write.Pollbutton = value; }}
+	/// <summary>PID: 40  | Type: dummy</summary>
+	public System.Object Polldata_dummy {get { return GetParameter(40); }set { SetParameter(40, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
 		transportstreams = new TransportstreamsQActionTable(this, 10, "transportstreams");
+		services = new ServicesQActionTable(this, 20, "services");
 		Write = new WriteParameters(this);
 	}
 }
@@ -163,6 +304,13 @@ public class TransportstreamsQActionTable : QActionTable, IEnumerable<Transports
 	public TransportstreamsQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
 	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
 	public IEnumerator<TransportstreamsQActionRow> GetEnumerator() { return new QActionTableEnumerator<TransportstreamsQActionRow>(this); }
+}
+/// <summary>IDX: 0</summary>
+public class ServicesQActionTable : QActionTable, IEnumerable<ServicesQActionRow>
+{
+	public ServicesQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
+	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
+	public IEnumerator<ServicesQActionRow> GetEnumerator() { return new QActionTableEnumerator<ServicesQActionRow>(this); }
 }
 /// <summary>IDX: 0</summary>
 public class TransportstreamsQActionRow : QActionTableRow
@@ -201,5 +349,45 @@ public class TransportstreamsQActionRow : QActionTableRow
 	public TransportstreamsQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
 	public static implicit operator TransportstreamsQActionRow(System.Object[] source) { return new TransportstreamsQActionRow(source); }
 	public static implicit operator System.Object[](TransportstreamsQActionRow source) { return source.ToObjectArray(); }
+	public System.String[] GetChildKeysServicesServicestransportstreamid(SLProtocol protocol) { return (System.String[])protocol.NotifyProtocol(196, 26, Key); }
+}
+/// <summary>IDX: 0</summary>
+public class ServicesQActionRow : QActionTableRow
+{
+	/// <summary>PID: 21 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicesid_21 { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 21 | Type: read</summary>
+	public System.Object Servicesid { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 22 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicesname_22 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 22 | Type: read</summary>
+	public System.Object Servicesname { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 23 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicestype_23 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	/// <summary>PID: 23 | Type: read</summary>
+	public System.Object Servicestype { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	/// <summary>PID: 24 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicesprovider_24 { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 24 | Type: read</summary>
+	public System.Object Servicesprovider { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 25 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Serviceslastpolltime_25 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	/// <summary>PID: 25 | Type: read</summary>
+	public System.Object Serviceslastpolltime { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	/// <summary>PID: 26 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Servicestransportstreamid_26 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 26 | Type: read</summary>
+	public System.Object Servicestransportstreamid { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	public ServicesQActionRow() : base(0, 6) { }
+	public ServicesQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
+	public static implicit operator ServicesQActionRow(System.Object[] source) { return new ServicesQActionRow(source); }
+	public static implicit operator System.Object[](ServicesQActionRow source) { return source.ToObjectArray(); }
+	public System.Object[] GetParentRowTransportstreamsServicestransportstreamid(SLProtocol protocol) { return (System.Object[])protocol.GetRow(10, (System.String)Servicestransportstreamid); }
 }
 }

@@ -200,7 +200,187 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
+		<Param id="20">
+			<Name>Services</Name>
+			<Description>Services</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="21" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="22" type="retrieved" options=""/>
+				<ColumnOption idx="2" pid="23" type="retrieved" options=""/>
+				<ColumnOption idx="3" pid="24" type="retrieved" options=""/>
+				<ColumnOption idx="4" pid="25" type="retrieved" options=""/>
+				<ColumnOption idx="5" pid="26" type="retrieved" options=";foreignKey=10"/>
+			</ArrayOptions>
+			<Information>
+				<Subtext>tableInformation</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:21|0-22|1-23|2-24|3-25|4-26|5,width:100-100-100-111-156-146,sort:STRING-STRING-STRING-STRING-INT-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="21">
+			<Name>ServicesId</Name>
+			<Description>Id (Services)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="22">
+			<Name>ServicesName</Name>
+			<Description>Name (Services)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="23">
+			<Name>ServicesType</Name>
+			<Description>Type (Services)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="24">
+			<Name>ServicesProvider</Name>
+			<Description>Service Provider (Services)</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="25">
+			<Name>ServicesLastPollTime</Name>
+			<Description>Last Poll Time (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This parameter is a column for the last poll time of the single row in Service.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
+			</Display>
+			<Measurement>
+				<Type options="datetime">number</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="26">
+			<Name>ServicesTransportStreamId</Name>
+			<Description>Transport Stream Id (Services)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This parameter displays the Transport Stream Id to which the Service belongs to.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="30">
+			<Name>PollButton</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>This parameter is a button used to poll data for Services and Transport Streams tables.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Poll Data</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		
+		<Param id="40">
+			<Name>PollData</Name>
+			<Description>Poll Data</Description>
+			<Type>dummy</Type>
+		</Param>
+		
+		
 	</Params>
+
 
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
