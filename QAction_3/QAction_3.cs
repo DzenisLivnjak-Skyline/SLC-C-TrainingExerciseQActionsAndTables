@@ -23,7 +23,7 @@ public static class QAction
     {
         try
         {
-            string dataFileFind = @"C:\\Skyline DataMiner\\Documents\\Excercise QActions And Tables dzenis\\Data.json";
+            string dataFileFind = @"C:\\Skyline DataMiner\\Documents\\Excercise QActions And Tables dzenis\\Data.json"; // make it dynamic
 
             SecurePath securePath = SecurePath.CreateSecurePath(dataFileFind);
 
@@ -53,12 +53,57 @@ public static class QAction
                         Transportstreamsmulticast_13 = ts.Multicast,
                         Transportstreamssourceip_14 = ts.SourceIp,
                         Transportstreamsnetworkid_15 = ts.Network_id.ToString(CultureInfo.InvariantCulture),
-                        Transportstreamslastpolltime_16 = DateTime.Now.ToOADate(),
+                        Transportstreamslastpolltime_16 = DateTime.Now.ToOADate(), // change datetime format if needed
                     }.ToObjectArray();
                 }
             }
 
             protocol.FillArray(Parameter.Transportstreams.tablePid, tableData.Values.ToList(), NotifyProtocol.SaveOption.Full);
+
+            if (deserializedData != null && deserializedData.Transport_streams != null && deserializedData.Transport_streams.Count > 0)
+            {
+                var setColumnsData = new Dictionary<int, List<object>>();
+
+                var serviceKeys = new List<object>();
+                var serviceNames = new List<object>();
+                var serviceTypes = new List<object>();
+                var serviceProviders = new List<object>();
+                var lastPollTimes = new List<object>();
+                var transportStreamIds = new List<object>();
+
+                foreach (var ts in deserializedData.Transport_streams)
+                {
+                    if (ts == null || ts.Services == null || ts.Services.Count == 0)
+                        continue;
+
+                    foreach (var svc in ts.Services)
+                    {
+                        if (svc == null)
+                            continue;
+
+                        serviceKeys.Add(svc.Service_id);
+
+                        serviceNames.Add(svc.Service_name);
+                        serviceTypes.Add(svc.Service_type);
+                        serviceProviders.Add(svc.Service_provider);
+                        lastPollTimes.Add(DateTime.Now.ToOADate());
+                        transportStreamIds.Add(ts.Ts_id);
+                    }
+                }
+
+                if (serviceKeys.Count > 0)
+                {
+                    setColumnsData[20] = serviceKeys;         // PK list (table PID)
+                    setColumnsData[22] = serviceNames;
+                    setColumnsData[23] = serviceTypes;
+                    setColumnsData[24] = serviceProviders;
+                    setColumnsData[25] = lastPollTimes;
+                    setColumnsData[26] = transportStreamIds;
+
+                    protocol.SetColumns(setColumnsData);
+                }
+            }
+
         }
 
         catch (Exception ex)

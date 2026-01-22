@@ -189,6 +189,7 @@ public interface SLProtocolExt : SLProtocol
 	TransportstreamsQActionTable transportstreams { get; set; }
 	/// <summary>PID: 20</summary>
 	ServicesQActionTable services { get; set; }
+	object Afterstartup_dummy { get; set; }
 	object Transportstreamsid_11 { get; set; }
 	object Transportstreamsid { get; set; }
 	object Transportstreamsname_12 { get; set; }
@@ -224,6 +225,8 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public TransportstreamsQActionTable transportstreams { get; set; }
 	/// <summary>PID: 20</summary>
 	public ServicesQActionTable services { get; set; }
+	/// <summary>PID: 2  | Type: dummy</summary>
+	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
 	/// <summary>PID: 11  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Transportstreamsid_11 {get { return GetParameter(11); }set { SetParameter(11, value); }}

@@ -64,11 +64,11 @@ Any inquiries can be addressed to:
 	</Compliancies>
 
 	<Params>
-		<!--<Param id="2">
+		<Param id="2">
 			<Name>AfterStartup</Name>
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
-		</Param>-->
+		</Param>
 		
 		<Param id="10">
 			<Name>TransportStreams</Name>
@@ -189,16 +189,19 @@ Any inquiries can be addressed to:
 			<Description>Last Poll Time (Transport Streams)</Description>
 			<Type>read</Type>
 			<Interprete>
-				<RawType>other</RawType>
-				<Type>string</Type>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
 			</Display>
 			<Measurement>
-				<Type>string</Type>
+				<Type options="datetime">number</Type>
 			</Measurement>
+			
 		</Param>
 		<Param id="20">
 			<Name>Services</Name>
@@ -220,8 +223,8 @@ Any inquiries can be addressed to:
 				<Positions>
 					<Position>
 						<Page>General</Page>
-						<Column>1</Column>
-						<Row>0</Row>
+						<Column>0</Column>
+						<Row>1</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -357,7 +360,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>1</Row>
+						<Row>2</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -443,7 +446,7 @@ Any inquiries can be addressed to:
 		</Action>
 		
 		<Action id="3">
-			<Name>Poll Data Action</Name>
+			<Name>Poll Data</Name>
 			<On id="40">parameter</On>
 			<Type>run actions</Type>
 		</Action>
@@ -459,13 +462,13 @@ Any inquiries can be addressed to:
 		</Timer>
 		<Timer id="2">
 			<Name>Medium Timer (1m)</Name>
-			<Time initial="true" dataDisplay="30000">60000</Time>
+			<Time initial="true">60000</Time>
 			<Interval>75</Interval>
 			<Content>
 				<Group>3</Group>
 			</Content>
 		</Timer>
-		<Timer id="3">
+		<Timer id="3" fixedTimer="true">
 			<Name>Slow Timer (1h)</Name>
 			<Time initial="true">3600000</Time>
 			<Interval>75</Interval>
