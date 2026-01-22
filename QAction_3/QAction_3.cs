@@ -23,20 +23,42 @@ public static class QAction
     {
         try
         {
-            string dataFileFind = @"C:\\Skyline DataMiner\\Documents\\Excercise QActions And Tables dzenis\\Data.json"; // make it dynamic
+            string dataFileFind = Convert.ToString(protocol.GetParameter(1));
+
+            if (String.IsNullOrWhiteSpace(dataFileFind))
+            {
+                protocol.Log(
+                	$"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|: Path has not been entered (Param 500).",
+                	LogType.Error,
+                	LogLevel.NoLogging);
+                    protocol.ClearAllKeys(10);
+                    protocol.ClearAllKeys(20);
+                return;
+
+            }
+
 
             SecurePath securePath = SecurePath.CreateSecurePath(dataFileFind);
 
             if (!File.Exists(securePath))
             {
-                protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|: JSON file not found at path {securePath}", LogType.Error, LogLevel.NoLogging);
+                protocol.Log(
+                	$"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|: JSON file not found at path {securePath}",
+                	LogType.Error,
+                	LogLevel.NoLogging);
+                    protocol.ClearAllKeys(10);
+                    protocol.ClearAllKeys(20);
                 return;
             }
+
             var json = File.ReadAllText(securePath);
             string jsonData = Convert.ToString(json);
             TransportStreams deserializedData = SecureNewtonsoftDeserialization.DeserializeObject<TransportStreams>(jsonData);
 
+            double pollTimestamp = DateTime.UtcNow.ToOADate();
+
             Dictionary<string, object[]> tableData = new Dictionary<string, object[]>();
+
 
             if (deserializedData == null || deserializedData.Transport_streams == null || deserializedData.Transport_streams.Count == 0)
             {
@@ -53,13 +75,12 @@ public static class QAction
                         Transportstreamsmulticast_13 = ts.Multicast,
                         Transportstreamssourceip_14 = ts.SourceIp,
                         Transportstreamsnetworkid_15 = ts.Network_id.ToString(CultureInfo.InvariantCulture),
-                        Transportstreamslastpolltime_16 = DateTime.Now.ToOADate(), // change datetime format if needed
+                        Transportstreamslastpolltime_16 = pollTimestamp,
                     }.ToObjectArray();
                 }
             }
-
             protocol.FillArray(Parameter.Transportstreams.tablePid, tableData.Values.ToList(), NotifyProtocol.SaveOption.Full);
-
+          
             if (deserializedData != null && deserializedData.Transport_streams != null && deserializedData.Transport_streams.Count > 0)
             {
                 var setColumnsData = new Dictionary<int, List<object>>();
@@ -82,19 +103,19 @@ public static class QAction
                             continue;
 
                         serviceKeys.Add(svc.Service_id);
-
                         serviceNames.Add(svc.Service_name);
                         serviceTypes.Add(svc.Service_type);
                         serviceProviders.Add(svc.Service_provider);
-                        lastPollTimes.Add(DateTime.Now.ToOADate());
+                        lastPollTimes.Add(pollTimestamp);
+
                         transportStreamIds.Add(ts.Ts_id);
                     }
                 }
 
                 if (serviceKeys.Count > 0)
                 {
-                    setColumnsData[20] = serviceKeys;         // PK list (table PID)
-                    setColumnsData[22] = serviceNames;
+                    setColumnsData[20] = serviceKeys;
+                    setColumnsData[Parameter.Services.Pid.servicesname_22] = serviceNames;
                     setColumnsData[23] = serviceTypes;
                     setColumnsData[24] = serviceProviders;
                     setColumnsData[25] = lastPollTimes;
@@ -103,6 +124,7 @@ public static class QAction
                     protocol.SetColumns(setColumnsData);
                 }
             }
+
 
         }
 

@@ -64,6 +64,54 @@ Any inquiries can be addressed to:
 	</Compliancies>
 
 	<Params>
+		<Param id="1" trending="false" save="true">
+			<Name>JsonFilePath</Name>
+			<Description>Json File Path</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="51" setter="true">
+			<Name>JsonFilePath</Name>
+			<Description>Json File Path</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 		<Param id="2">
 			<Name>AfterStartup</Name>
 			<Description>After Startup</Description>
@@ -91,7 +139,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>0</Row>
+						<Row>1</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -224,7 +272,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>1</Row>
+						<Row>2</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -360,7 +408,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>0</Column>
-						<Row>2</Row>
+						<Row>3</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -382,8 +430,12 @@ Any inquiries can be addressed to:
 		</Param>
 		
 		
+		
+		
 	</Params>
-
+	<Relations>
+		<Relation path="10;20" />
+	</Relations>
 
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
@@ -423,6 +475,17 @@ Any inquiries can be addressed to:
 			</Content>
 		</Trigger>
 
+		<Trigger id="4">
+			<Name>Json path changed</Name>
+			<On id="1">parameter</On>
+			<Time>change</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>4</Id>
+			</Content>
+		</Trigger>
+
+
 		<!--<Trigger id="2">
 			<Name>Poll Data Trigger</Name>
 			<On>parameter</On>
@@ -450,16 +513,17 @@ Any inquiries can be addressed to:
 			<On id="40">parameter</On>
 			<Type>run actions</Type>
 		</Action>
+
+		<Action id="4">
+			<Name>Json File Path Copy</Name>
+			<On id="1">parameter</On>
+			<Type id="51">copy</Type>
+		</Action>
+		
 		</Actions>
 
 	<Timers>
-		<Timer id="1">
-			<Name>Fast Timer (10s)</Name>
-			<Time initial="true">10000</Time>
-			<Interval>75</Interval>
-			<Content>
-			</Content>
-		</Timer>
+
 		<Timer id="2">
 			<Name>Medium Timer (1m)</Name>
 			<Time initial="true">60000</Time>
@@ -468,13 +532,7 @@ Any inquiries can be addressed to:
 				<Group>3</Group>
 			</Content>
 		</Timer>
-		<Timer id="3" fixedTimer="true">
-			<Name>Slow Timer (1h)</Name>
-			<Time initial="true">3600000</Time>
-			<Interval>75</Interval>
-			<Content>
-			</Content>
-		</Timer>
+
 	</Timers>
 
 	<PortSettings>

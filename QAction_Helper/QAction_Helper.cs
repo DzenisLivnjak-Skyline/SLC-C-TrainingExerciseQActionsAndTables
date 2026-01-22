@@ -8,6 +8,11 @@ namespace Skyline.DataMiner.Scripting
 {
 public static class Parameter
 {
+	/// <summary>PID: 1 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int jsonfilepath_1 = 1;
+	/// <summary>PID: 1 | Type: read</summary>
+	public const int jsonfilepath = 1;
 	public class Write
 	{
 		/// <summary>PID: 30 | Type: write</summary>
@@ -15,6 +20,11 @@ public static class Parameter
 		public const int pollbutton_30 = 30;
 		/// <summary>PID: 30 | Type: write</summary>
 		public const int pollbutton = 30;
+		/// <summary>PID: 51 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int jsonfilepath_51 = 51;
+		/// <summary>PID: 51 | Type: write</summary>
+		public const int jsonfilepath = 51;
 	}
 	public class Transportstreams
 	{
@@ -177,6 +187,8 @@ public class WriteParameters
 {
 	/// <summary>PID: 30  | Type: write | DISCREETS: Poll Data = 1</summary>
 	public System.Object Pollbutton {get { return Protocol.GetParameter(30); }set { Protocol.SetParameter(30, value); }}
+	/// <summary>PID: 51  | Type: write</summary>
+	public System.Object Jsonfilepath {get { return Protocol.GetParameter(51); }set { Protocol.SetParameter(51, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -189,6 +201,8 @@ public interface SLProtocolExt : SLProtocol
 	TransportstreamsQActionTable transportstreams { get; set; }
 	/// <summary>PID: 20</summary>
 	ServicesQActionTable services { get; set; }
+	object Jsonfilepath_1 { get; set; }
+	object Jsonfilepath { get; set; }
 	object Afterstartup_dummy { get; set; }
 	object Transportstreamsid_11 { get; set; }
 	object Transportstreamsid { get; set; }
@@ -217,6 +231,7 @@ public interface SLProtocolExt : SLProtocol
 	object Pollbutton_30 { get; set; }
 	object Pollbutton { get; set; }
 	object Polldata_dummy { get; set; }
+	object Jsonfilepath_51 { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -225,6 +240,11 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public TransportstreamsQActionTable transportstreams { get; set; }
 	/// <summary>PID: 20</summary>
 	public ServicesQActionTable services { get; set; }
+	/// <summary>PID: 1  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Jsonfilepath_1 {get { return GetParameter(1); }set { SetParameter(1, value); }}
+	/// <summary>PID: 1  | Type: read</summary>
+	public System.Object Jsonfilepath {get { return GetParameter(1); }set { SetParameter(1, value); }}
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
 	/// <summary>PID: 11  | Type: read</summary>
@@ -293,6 +313,9 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Pollbutton {get { return Write.Pollbutton; }set { Write.Pollbutton = value; }}
 	/// <summary>PID: 40  | Type: dummy</summary>
 	public System.Object Polldata_dummy {get { return GetParameter(40); }set { SetParameter(40, value); }}
+	/// <summary>PID: 51  | Type: write</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Jsonfilepath_51 {get { return GetParameter(51); }set { SetParameter(51, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
